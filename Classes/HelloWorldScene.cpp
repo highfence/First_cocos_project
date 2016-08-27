@@ -1,7 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
-
 USING_NS_CC;
 using namespace cocos2d;
 
@@ -22,9 +21,18 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
+
+	
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	
+	player = Snake::create();
+
+
+	this->addChild(player->head);
+	for (int idx = 0; player->body[idx] != NULL; ++idx) {
+		this->addChild(player->body[idx]);
+	}
 
     return true;
 }

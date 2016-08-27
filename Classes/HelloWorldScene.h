@@ -2,6 +2,8 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "snake.h"
+
 
 USING_NS_CC;
 
@@ -13,9 +15,8 @@ public:
     virtual bool init();
 
     CREATE_FUNC(HelloWorld);
-
+	Snake* player;
 private :
-
 };
 
 #endif // __HELLOWORLD_SCENE_H__
