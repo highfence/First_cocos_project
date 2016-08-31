@@ -24,11 +24,14 @@ public :
 
 	int ateFood;
 	int direction;
+	int INIT_COMPLETE = 0; // 0 means INIT is not yet, 1 means INIT is done.
 	cocos2d::Sprite* head;
 	cocos2d::Sprite* body[MAX_BODY];
 
 	void SpriteSnake();
 	void InitSetting();
+	void MoveSnake(float);
+	void MoveEnd();
 
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 };

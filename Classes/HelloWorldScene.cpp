@@ -28,11 +28,11 @@ bool HelloWorld::init()
 	
 	player = Snake::create();
 
-
 	this->addChild(player->head);
 	for (int idx = 0; player->body[idx] != NULL; ++idx) {
 		this->addChild(player->body[idx]);
 	}
 
-    return true;
+	return true;
 }
+

@@ -16,6 +16,7 @@ public:
 
     CREATE_FUNC(HelloWorld);
 	Snake* player;
+
 private :
 };
 
