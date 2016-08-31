@@ -8,29 +8,46 @@ const int BASIC_HEIGHT = 16;
 
 auto winSize = Point(BASIC_WIDTH * 20, BASIC_HEIGHT * 20);
 
-Snake* Snake::create() {
 
-	Snake* playable = new Snake();
-	
-	playable->ateFood = INIT_FOOD;
-	playable->direction = RIGHT;
 
+
+bool Snake::init()
+{
+	ateFood = INIT_FOOD;
+	direction = RIGHT;
+
+	SpriteSnake();
+	InitSetting();
+	INIT_COMPLETE = 1;
 	
-	playable->SpriteSnake();
-	playable->InitSetting();
-	playable->INIT_COMPLETE = 1;
-	return playable;
+
+	scheduleUpdate();
+
+	return true;
 }
 
-
+void Snake::update(float dt)
+{
+	static float st = 0.0f;
+	st += dt;
+	if (st >= .5f)
+	{
+		MoveSnake();
+			
+		
+		st = 0.f;
+	}
+}
 
 void Snake::SpriteSnake() {
 
 	this->head = Sprite::create("snake_head.png");
-	
+	addChild(head);
+
 	for (int idx = 0; idx < ateFood; ++idx) {
 		
 		this->body[idx] = Sprite::create("snake_body.png");
+		addChild(body[idx]);
 	}
 
 	this->body[ateFood] = NULL;
@@ -84,11 +101,9 @@ void Snake::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event) {
 			this->direction = DOWN;
 			break;
 	}
-
-	this->MoveSnake(0);
 }
 
-void Snake::MoveSnake(float dt) {
+void Snake::MoveSnake() {
 
 	if (this->INIT_COMPLETE == 0) {
 		return;
@@ -128,6 +143,5 @@ void Snake::MoveSnake(float dt) {
 	}
 
 	this->body[0]->setPosition(Vec2(head_width, head_height));
-
 	
 }

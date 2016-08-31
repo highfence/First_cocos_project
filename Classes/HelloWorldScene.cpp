@@ -25,13 +25,16 @@ bool HelloWorld::init()
 	
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	
-	player = Snake::create();
 
+	player = Snake::create();
+	this->addChild(player);
+
+	/*
 	this->addChild(player->head);
 	for (int idx = 0; player->body[idx] != NULL; ++idx) {
 		this->addChild(player->body[idx]);
 	}
+	*/
 
 	return true;
 }

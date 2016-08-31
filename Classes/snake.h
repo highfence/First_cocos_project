@@ -16,11 +16,14 @@ const int DOWN = -2;
 
 class Snake : public Node {
 public :
-	static Snake* create();
+	CREATE_FUNC(Snake);
+	bool init() override;
 	enum INIT_SETTING {
 		INIT_FOOD = 4,
 		INIT_DIRECTION = RIGHT
 	};
+
+	void update(float dt);
 
 	int ateFood;
 	int direction;
@@ -30,7 +33,7 @@ public :
 
 	void SpriteSnake();
 	void InitSetting();
-	void MoveSnake(float);
+	void MoveSnake();
 	void MoveEnd();
 
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
