@@ -2,7 +2,6 @@
 
 #include "HelloWorldScene.h"
 
-using namespace cocos2d;
 
 #ifndef _SNAKE_H__
 #define _SNAKE_H__
@@ -23,7 +22,6 @@ public :
 		INIT_DIRECTION = RIGHT
 	};
 
-	void update(float dt);
 
 	int ateFood;
 	int direction;
@@ -35,6 +33,8 @@ public :
 	void InitSetting();
 	void MoveSnake();
 	void MoveEnd();
+	void MakeLonger();
+	void HeadRotate();
 
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 };

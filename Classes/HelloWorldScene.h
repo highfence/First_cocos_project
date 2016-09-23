@@ -1,11 +1,13 @@
-#ifndef __HELLOWORLD_SCENE_H__
-#define __HELLOWORLD_SCENE_H__
-
-#include "cocos2d.h"
-#include "snake.h"
+#pragma once
 
 
-USING_NS_CC;
+
+
+class Snake;
+class Apple;
+
+const int winSize_x = 480;
+const int winSize_y = 320;
 
 class HelloWorld : public Layer
 {
@@ -14,10 +16,19 @@ public:
 
     virtual bool init();
 
-    CREATE_FUNC(HelloWorld);
-	Snake* player;
+	void CrashWithWall();
+	void CrashWithApple();
+	
+	void update(float dt);
 
+    CREATE_FUNC(HelloWorld);
+	
+	
+	Snake* player;
+	Apple* food;
+
+	bool RunActionTrigger;
 private :
+
 };
 
-#endif // __HELLOWORLD_SCENE_H__

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "snake.h"
 
 
@@ -19,24 +20,8 @@ bool Snake::init()
 	SpriteSnake();
 	InitSetting();
 	INIT_COMPLETE = 1;
-	
-
-	scheduleUpdate();
 
 	return true;
-}
-
-void Snake::update(float dt)
-{
-	static float st = 0.0f;
-	st += dt;
-	if (st >= .5f)
-	{
-		MoveSnake();
-			
-		
-		st = 0.f;
-	}
 }
 
 void Snake::SpriteSnake() {
@@ -144,4 +129,33 @@ void Snake::MoveSnake() {
 
 	this->body[0]->setPosition(Vec2(head_width, head_height));
 	
+}
+
+void Snake::MakeLonger()
+{
+	this->ateFood += 1;
+	this->body[ateFood - 1] = Sprite::create("snake_body.png");
+	this->body[ateFood - 1]->setPosition(Vec2(this->body[ateFood-2]->getPosition().x - BASIC_WIDTH, this->body[ateFood-2]->getPosition().y));
+	addChild(body[ateFood - 1]);
+	this->body[ateFood] = NULL;
+
+}
+
+void Snake::HeadRotate()
+{
+	switch (this->direction) {
+
+		case RIGHT :
+			this->head->setRotation(0);
+			break;
+		case UP :
+			this->head->setRotation(-90);
+			break;
+		case LEFT :
+			this->head->setRotation(180);
+			break;
+		case DOWN :
+			this->head->setRotation(90);
+			break;
+	}
 }
